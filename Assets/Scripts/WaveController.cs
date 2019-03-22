@@ -6,11 +6,15 @@ public class WaveController : MonoBehaviour {
 
     public float dirX;
     float moveSpeed;
-    bool catPlayerFacingRight;
+    bool PlayerFacingRight;
+    private float playerHeight;
+    private float groundHeight;
+    private float waveHeight;
 
     void Awake()
     {
-        catPlayerFacingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<CatController>().facingRight;
+        playerHeight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().transform.position.y;
+        PlayerFacingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().facingRight;
     }
     // Use this for initialization
     void Start () {
@@ -19,12 +23,14 @@ public class WaveController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
+        playerHeight = GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>().size.y;
+        groundHeight = GameObject.FindGameObjectWithTag("Ground").GetComponent<BoxCollider2D>().size.y;
+        waveHeight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().wave.GetComponent<BoxCollider2D>().size.y;
         //dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
-        if (catPlayerFacingRight)
+        if (PlayerFacingRight)
         {
-            transform.position = new Vector2(transform.position.x + dirX, transform.position.y);    
+            Debug.Log("The value for groundHeight is " + groundHeight + "    The value for waveHeight is " + waveHeight);
+            transform.position = new Vector2(transform.position.x + dirX,  playerHeight - groundHeight); //.5 of ground height + wave height should give us the top of ground.   
         }
         else
         {
