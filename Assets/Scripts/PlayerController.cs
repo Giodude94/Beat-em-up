@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public bool facingRight;
     private bool jump;
     public float jumpForce;
+    public bool isGrounded;
+    private Transform groundCheck;
+    public LayerMask groundLayers;
 
     float dirX, moveSpeed;
 
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         jump = false;
+        //isGrounded = true;
         jumpForce = jumpForce + 0f;
         rb2d = GetComponent<Rigidbody2D>();
     }
@@ -32,16 +36,23 @@ public class PlayerController : MonoBehaviour
         facingRight = true; //The player will be facing right at the start of the game. Always.
         anim = GetComponent<Animator>();
         moveSpeed = 5f;
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        //In order for the one that is similar to IronHaven to work you must include a transfrom in Unity scene editor.
+        //This grounded meachanic is a point in the bottom left of the char collider that extends to the bottom right(a bit more below) that then draws a line between the two points
+        // if there is a layer of ground that is touching the line the player will be grounded.
+        isGrounded = Physics2D.OverlapArea(new Vector2((transform.position.x - .85f) , transform.position.y - 1.32f), 
+                       new Vector2(transform.position.x + 0.85f, transform.position.y - 1.7f), groundLayers);
 
+        //Debug.Log(isGrounded);
         dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
 
-        transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
+        transform.position = new Vector2(transform.position.x+ dirX, transform.position.y);
 
         if (dirX != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Kick"))
         {

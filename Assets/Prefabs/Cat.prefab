@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4675892514795802}
   - component: {fileID: 212778102574063490}
   - component: {fileID: 95817844526863696}
+  - component: {fileID: 114112724545460500}
   - component: {fileID: 114871257984822390}
   - component: {fileID: 50304555504606332}
   - component: {fileID: 58430459811358056}
@@ -123,6 +124,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114112724545460500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1129507097986362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d34c38695260a347b29ae6fe9ee9b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHp: 0
+  maxHP: 0
+  objectName: 
 --- !u!114 &114871257984822390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,10 +149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df71d1c4b6fad4842ba671cb8c218721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wave: {fileID: 0}
+  wave: {fileID: 1157920265434740, guid: 727c59d7fb42e0542a6d804c31f934d6, type: 2}
   rb2d: {fileID: 0}
   facingRight: 0
-  jumpForce: 0
+  jumpForce: 500
+  isGrounded: 0
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!212 &212778102574063490
 SpriteRenderer:
   m_ObjectHideFlags: 1
