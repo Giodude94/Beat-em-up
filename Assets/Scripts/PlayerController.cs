@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (jump)
+        if (jump && isGrounded)
         {
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
