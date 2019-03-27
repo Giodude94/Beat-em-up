@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public GameObject wave;
-    public Rigidbody2D rb2d;
+    public Rigidbody2D projectile;
+    public Transform projectileSpawnPoint;
+    public Rigidbody2D playerRigidBody2d;
     public bool facingRight;
     private bool jump;
     public float jumpForce;
@@ -24,9 +25,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         jump = false;
-        //isGrounded = true;
         jumpForce = jumpForce + 0f;
-        rb2d = GetComponent<Rigidbody2D>();
+        playerRigidBody2d = GetComponent<Rigidbody2D>();
+
     }
 
 
@@ -43,8 +44,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //In order for the one that is similar to IronHaven to work you must include a transfrom in Unity scene editor.
-        //This grounded meachanic is a point in the bottom left of the char collider that extends to the bottom right(a bit more below) that then draws a line between the two points
+        // In order for the one that is similar to IronHaven to work you must include a transfrom in Unity scene editor.
+        // This grounded meachanic is a point in the bottom left of the char collider that extends to the bottom right(a bit more below) that then draws a line between the two points
         // if there is a layer of ground that is touching the line the player will be grounded.
         isGrounded = Physics2D.OverlapArea(new Vector2((transform.position.x - .85f) , transform.position.y - 1.32f), 
                        new Vector2(transform.position.x + 0.85f, transform.position.y - 1.7f), groundLayers);
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(isGrounded);
         dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
 
-        transform.position = new Vector2(transform.position.x+ dirX, transform.position.y);
+        transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
 
         if (dirX != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Kick"))
         {
@@ -70,24 +71,25 @@ public class PlayerController : MonoBehaviour
             //Flip(dirX);
             anim.SetBool("isWalking", false);
             anim.SetTrigger("hit");
-            GameObject clone;
-            clone = Instantiate(wave, transform.position, Quaternion.identity);
+            Rigidbody2D clone;
+            clone = (Rigidbody2D)Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
+
+            clone.transform.position = new Vector2(projectileSpawnPoint.position.x, projectileSpawnPoint.position.y);
+            //GameObject clone = Instantiate(wave, transform.position, Quaternion.identity);
         }
+
 
         if ((Input.GetButtonDown("Jump")))
         {
             jump = true;
         }
-
-
-
     }
 
     private void FixedUpdate()
     {
         if (jump && isGrounded)
         {
-            rb2d.AddForce(new Vector2(0f, jumpForce));
+            playerRigidBody2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
             //anim.SetTrigger("PlayerJump")//setJump();
         }
