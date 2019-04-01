@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour {
 
-    //public Rigidbody2D projectile;
-    //public Transform Spawnpoint;
     public float moveSpeed;
     private bool playerFacingRight;
-    private float playerHeight;
-    private float groundHeight;
-    private bool pGrounded;
-    private float WAVEHEIGHT = 2.17f;
     
 
     void Awake()
@@ -21,14 +15,11 @@ public class WaveController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-       // moveSpeed = 5;
     }
 	
 	// Update is called once per frame
 	void Update () { 
-        //groundHeight = GameObject.FindGameObjectWithTag("Ground").GetComponent<BoxCollider2D>().size.y;
-        
-        //dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
+        //Controlling which direction the wave will travel based on what direction the player is facing.
         if (playerFacingRight)
         {
             transform.position = new Vector2(transform.position.x + moveSpeed, transform.position.y);    
@@ -41,6 +32,16 @@ public class WaveController : MonoBehaviour {
         {
             Debug.Log("Something went wrong with the wave. Script WaveController");
         }
-        
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log(collision.tag); //Will display both the Player and the Enemy tags.
+        if(collision.tag == "Enemy")
+        {
+            collision.GetComponent<HealthController>().takeDamage(2);
+            Destroy(gameObject, .05f);
+        }
+    }
+    
 }

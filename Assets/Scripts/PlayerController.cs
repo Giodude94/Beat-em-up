@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public Rigidbody2D projectile;
+    public GameObject projectile;
     public Transform projectileSpawnPoint;
     public Rigidbody2D playerRigidBody2d;
     public bool facingRight;
@@ -71,11 +71,16 @@ public class PlayerController : MonoBehaviour
             //Flip(dirX);
             anim.SetBool("isWalking", false);
             anim.SetTrigger("hit");
-            Rigidbody2D clone;
-            clone = (Rigidbody2D)Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
-
-            clone.transform.position = new Vector2(projectileSpawnPoint.position.x, projectileSpawnPoint.position.y);
-            //GameObject clone = Instantiate(wave, transform.position, Quaternion.identity);
+            if (projectile != null)
+            {
+                GameObject clone;
+                clone = (GameObject)Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
+                clone.GetComponent<WaveController>().enabled = true;
+                clone.GetComponent<DestroyGameObj>().enabled = true;
+                clone.tag = "Projectile";
+                clone.transform.position = new Vector2(projectileSpawnPoint.position.x, projectileSpawnPoint.position.y);
+                //GameObject clone = Instantiate(wave, transform.position, Quaternion.identity);
+            }
         }
 
 
@@ -103,6 +108,14 @@ public class PlayerController : MonoBehaviour
             Vector3 theScale = transform.localScale; //Creating a ref to the players local scale;
             theScale.x *= -1;
             transform.localScale = theScale;
+
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.tag);
+        if(collision.tag == "Wave"){
+            projectile = collision.gameObject;
         }
     }
 }
