@@ -10,6 +10,7 @@ public class WaveController : MonoBehaviour {
 
     void Awake()
     {
+        //Boolean to see if the player is currently facing to the right.
         playerFacingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().facingRight;
     }
 
@@ -34,11 +35,12 @@ public class WaveController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)// Collision for the wave that is spawned by the player.
     {
         //Debug.Log(collision.tag); //Will display both the Player and the Enemy tags.
         if(collision.tag == "Enemy")
         {
+            Debug.Log("Wave projectile has hit the enemy!");
             collision.GetComponent<HealthController>().takeDamage(2);
             Destroy(gameObject, .05f);
         }
