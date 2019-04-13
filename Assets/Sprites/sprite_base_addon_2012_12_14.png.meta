@@ -266,16 +266,16 @@ TextureImporter:
     21300522: sprite_base_addon_2012_12_14_261
     21300524: sprite_base_addon_2012_12_14_262
     21300526: sprite_base_addon_2012_12_14_263
-    21300528: sprite_base_addon_2012_12_14_264
-    21300530: sprite_base_addon_2012_12_14_265
-    21300532: sprite_base_addon_2012_12_14_266
-    21300534: sprite_base_addon_2012_12_14_267
-    21300536: sprite_base_addon_2012_12_14_268
-    21300538: sprite_base_addon_2012_12_14_269
-    21300540: sprite_base_addon_2012_12_14_270
-    21300542: sprite_base_addon_2012_12_14_271
-    21300544: sprite_base_addon_2012_12_14_272
-    21300546: sprite_base_addon_2012_12_14_273
+    21300528: Cat_1-2_Combo_0
+    21300530: Cat_1-2_Combo_1
+    21300532: Cat_1-2_Combo_2
+    21300534: Cat_1-2_Combo_3
+    21300536: Cat_1-2_Combo_4
+    21300538: Cat_1-2_Combo_5
+    21300540: Cat_1-2_Combo_6
+    21300542: Cat_1-2_Combo_7
+    21300544: Cat_1-2_Combo_8
+    21300546: Cat_1-2_Combo_9
     21300548: sprite_base_addon_2012_12_14_274
     21300550: sprite_base_addon_2012_12_14_275
     21300552: sprite_base_addon_2012_12_14_276
@@ -388,7 +388,7 @@ TextureImporter:
     21300766: sprite_base_addon_2012_12_14_383
     21300768: sprite_base_addon_2012_12_14_384
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -5749,7 +5749,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_264
+      name: Cat_1-2_Combo_0
       rect:
         serializedVersion: 2
         x: 21
@@ -5769,7 +5769,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_265
+      name: Cat_1-2_Combo_1
       rect:
         serializedVersion: 2
         x: 85
@@ -5789,7 +5789,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_266
+      name: Cat_1-2_Combo_2
       rect:
         serializedVersion: 2
         x: 149
@@ -5809,7 +5809,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_267
+      name: Cat_1-2_Combo_3
       rect:
         serializedVersion: 2
         x: 213
@@ -5829,7 +5829,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_268
+      name: Cat_1-2_Combo_4
       rect:
         serializedVersion: 2
         x: 275
@@ -5849,7 +5849,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_269
+      name: Cat_1-2_Combo_5
       rect:
         serializedVersion: 2
         x: 340
@@ -5869,7 +5869,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_270
+      name: Cat_1-2_Combo_6
       rect:
         serializedVersion: 2
         x: 405
@@ -5889,7 +5889,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_271
+      name: Cat_1-2_Combo_7
       rect:
         serializedVersion: 2
         x: 469
@@ -5909,7 +5909,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_272
+      name: Cat_1-2_Combo_8
       rect:
         serializedVersion: 2
         x: 534
@@ -5929,7 +5929,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprite_base_addon_2012_12_14_273
+      name: Cat_1-2_Combo_9
       rect:
         serializedVersion: 2
         x: 597
