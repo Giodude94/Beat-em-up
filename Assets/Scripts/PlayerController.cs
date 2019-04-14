@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         facingRight = true; //The player will be facing right at the start of the game. Always.
         anim = GetComponent<Animator>();
         moveSpeed = 5f;
-        
+
 
     }
 
@@ -46,51 +46,70 @@ public class PlayerController : MonoBehaviour
     {
         // This grounded meachanic is a point in the bottom left of the char collider that extends to the bottom right(a bit more below) that then draws a line between the two points
         // if there is a layer of ground that is touching the line the player will be grounded.
-        isGrounded = Physics2D.OverlapArea(new Vector2((transform.position.x - .85f) , transform.position.y - 1.32f), 
+        isGrounded = Physics2D.OverlapArea(new Vector2((transform.position.x - .85f), transform.position.y - 1.32f),
                        new Vector2(transform.position.x + 0.85f, transform.position.y - 1.7f), groundLayers);
 
-        
+
         dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
 
         //Moves the player in the x axis.
         transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
 
+
+
+
+
+
         //If the player is moving and the player is not currently in the middle of the first combo, second combo, or third combo in the chain.
-        if (dirX != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")) //This pice of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
-        {
+        //When dirX == 0, player is standing still.
+        if ( !standingStill() && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1_Combo1")) //This pice of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
+        { 
             anim.SetBool("isWalking", true);
-            Flip(dirX); 
+            Flip(dirX);
+            
             //Debug.Log("This code is running.");
         }
         else
         {
-            anim.SetBool("isWalking", false);
-            //Flip(dirX); //Will flip while in the middle of the kick animation.
+            anim.SetBool("isWalking", false); // When walking is false idle will be happening.
+            Flip(dirX); //Will flip while in the middle of the kick animation.
         }
+
+
+
+
+
+
+
+
+
+
         //If the player is clicking the left mouse button and it is not in the middle of a kick animation.
         if(Input.GetButtonDown("Fire1") && (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
         {
-            anim.SetBool("isWalking", false);
-            //anim.SetTrigger("attack");
-            // anim.ResetTrigger("attack3");
-            anim.Play("Combo1_Hit1");
+            anim.SetTrigger("attack");
+            //anim.SetBool("isWalking",false);
+            //inCombo = true;
+            //anim.ResetTrigger("attack3");
+            //anim.Play("Combo1_Hit1");
         }
+        
         else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")){
-            anim.SetBool("isWalking", false);
-            //anim.SetTrigger("attack2");
+            anim.SetTrigger("attack");
+            //anim.SetBool("isWalking", false);
             //anim.ResetTrigger("attack");
-            anim.Play("Combo1_Hit2");
+            //anim.Play("Combo1_Hit2");
 
         }
         
         else if(Input.GetButtonDown("Fire1") &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
-            anim.SetBool("isWalking", false);
-            //anim.SetTrigger("attack3");
+            anim.SetTrigger("attack");
+            //anim.SetBool("isWalking", false);
             //anim.ResetTrigger("attack2");
-            anim.Play("Combo1_Hit3");
-            anim.Play("Combo1_Hit3");
+            //anim.Play("Combo1_Hit3");
         }
+       
         
         //Jumping
         if ((Input.GetButtonDown("Jump")))
@@ -126,6 +145,20 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(collision.tag);
         if(collision.tag == "Wave"){ //Currently our projectile is set to Wave(The type of projectile).
             projectile = collision.gameObject;
+        }
+    }
+
+
+
+    bool standingStill()
+    {
+        if( dirX == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
