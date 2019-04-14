@@ -56,10 +56,11 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
 
         //If the player is moving and the player is not currently in the middle of the first combo, second combo, or third combo in the chain.
-        if (dirX != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1"))
+        if (dirX != 0 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")) //This pice of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
         {
             anim.SetBool("isWalking", true);
             Flip(dirX); 
+            //Debug.Log("This code is running.");
         }
         else
         {
@@ -67,36 +68,30 @@ public class PlayerController : MonoBehaviour
             //Flip(dirX); //Will flip while in the middle of the kick animation.
         }
         //If the player is clicking the left mouse button and it is not in the middle of a kick animation.
-        if (Input.GetButtonDown("Fire1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1"))
+        if(Input.GetButtonDown("Fire1") && (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
         {
             anim.SetBool("isWalking", false);
-            anim.SetTrigger("attack");
-           // anim.SetBool("C1", true);
-
-            //Code for picking up the game object that the player is passing over.
-            /*
-            if (projectile != null)
-            {
-                GameObject clone;
-                clone = (GameObject)Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
-                //projectile.SetActive(false);
-                clone.GetComponent<WaveController>().enabled = true;
-                clone.GetComponent<DestroyGameObj>().enabled = true;
-                clone.tag = "Projectile";
-                clone.transform.position = new Vector2(projectileSpawnPoint.position.x, projectileSpawnPoint.position.y);
-                //GameObject clone = Instantiate(wave, transform.position, Quaternion.identity);
-            }*/
+            //anim.SetTrigger("attack");
+            // anim.ResetTrigger("attack3");
+            anim.Play("Combo1_Hit1");
         }
-        if(Input.GetButtonDown("Fire1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")){
+        else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")){
             anim.SetBool("isWalking", false);
-            anim.SetTrigger("attack2");
-            
-        }
-        if (Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
-        {
-            anim.SetTrigger("attack3");
-        }
+            //anim.SetTrigger("attack2");
+            //anim.ResetTrigger("attack");
+            anim.Play("Combo1_Hit2");
 
+        }
+        
+        else if(Input.GetButtonDown("Fire1") &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
+        {
+            anim.SetBool("isWalking", false);
+            //anim.SetTrigger("attack3");
+            //anim.ResetTrigger("attack2");
+            anim.Play("Combo1_Hit3");
+            anim.Play("Combo1_Hit3");
+        }
+        
         //Jumping
         if ((Input.GetButtonDown("Jump")))
         {
