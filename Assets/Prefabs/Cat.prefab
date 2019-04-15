@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 114871257984822390}
   - component: {fileID: 50304555504606332}
   - component: {fileID: 58430459811358056}
+  - component: {fileID: 5866131627361428375}
   - component: {fileID: 61400896504039838}
   m_Layer: 0
   m_Name: Cat
@@ -226,6 +227,22 @@ CircleCollider2D:
   m_Offset: {x: 0.8852434, y: -0.08655393}
   serializedVersion: 2
   m_Radius: 0.25689185
+--- !u!58 &5866131627361428375
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129507097986362}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.45
 --- !u!61 &61400896504039838
 BoxCollider2D:
   m_ObjectHideFlags: 0

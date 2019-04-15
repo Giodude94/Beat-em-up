@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         { 
             anim.SetBool("isWalking", true);
             Flip(dirX);
-            anim.ResetTrigger("attack");
+            //anim.ResetTrigger("attack");
 
             //Debug.Log("This code is running.");
         }
@@ -80,16 +80,11 @@ public class PlayerController : MonoBehaviour
 
 
 
-
-
-
-
-
         //If the player is clicking the left mouse button and it is not in the middle of a kick animation.
         if(Input.GetButtonDown("Fire1") && (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
         {
             anim.SetTrigger("attack");
-            //anim.SetBool("isWalking",false);
+            anim.SetBool("isWalking",false);
             //inCombo = true;
             //anim.ResetTrigger("attack3");
             //anim.Play("Combo1_Hit1");
@@ -106,7 +101,7 @@ public class PlayerController : MonoBehaviour
         else if(Input.GetButtonDown("Fire1") &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
             anim.SetTrigger("attack");
-            anim.SetBool("isWalking", false);
+            //anim.SetBool("isWalking", false);
             //anim.ResetTrigger("attack2");
             //anim.Play("Combo1_Hit3");
         }
