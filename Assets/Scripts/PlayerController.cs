@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour
         { 
             anim.SetBool("isWalking", true);
             Flip(dirX);
-            
+            anim.ResetTrigger("attack");
+
             //Debug.Log("This code is running.");
         }
         else
@@ -105,9 +106,13 @@ public class PlayerController : MonoBehaviour
         else if(Input.GetButtonDown("Fire1") &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
             anim.SetTrigger("attack");
-            //anim.SetBool("isWalking", false);
+            anim.SetBool("isWalking", false);
             //anim.ResetTrigger("attack2");
             //anim.Play("Combo1_Hit3");
+        }
+        else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
+        {
+            anim.ResetTrigger("attack");
         }
        
         
