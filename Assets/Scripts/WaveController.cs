@@ -11,6 +11,7 @@ public class WaveController : MonoBehaviour {
     void Awake()
     {
         //Boolean to see if the player is currently facing to the right.
+        //gameObject.SetActive(true);
         playerFacingRight = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().facingRight;
     }
 

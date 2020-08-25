@@ -5,10 +5,12 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public GameObject[] inventory = new GameObject[2]; // Creating an array that holds our items, currently set to two items total.
-    public GameObject droppedWeapon; 
+    public GameObject droppedWeapon;
+    public GameObject[] spellList = new GameObject[2]; //List that holds prefabs of all available spells the character can use
 
     public void AddItem(GameObject spell)
     {
+
         bool itemAdded = false;
         bool duplicate = false;
 
@@ -22,13 +24,15 @@ public class Inventory : MonoBehaviour
             }
 
             if (inventory[i] == null)
-            { // looking in each spot of the inventry until an empty spot is found.
-                inventory[i] = spell;
+            { // looking in each spot of the inventry until an empty spot is found
+
+                inventory[i] = AssignSpellFromList(spell);
                 //Debug.Log (item.name + " was added");
-               // playerText.weaponPickedUp(spell);
+                // playerText.weaponPickedUp(spell);
                 itemAdded = true;
                 //Make the object de activate to similate object being picked up.
                 spell.SendMessage("DoInteraction");
+
                 break;
             }
         }
@@ -36,7 +40,7 @@ public class Inventory : MonoBehaviour
         if (itemAdded == false && duplicate == false)
         {
             Vector3 itemPos = spell.transform.position;// Storing the current position of the item that is to be picked up.
-                                                      //inventory [1].SetActive (true); un comment this to get the object to re appear at original position when dropped.
+            //inventory [1].SetActive (true); un comment this to get the object to re appear at original position when dropped.
             droppedWeapon = Instantiate(inventory[0], itemPos, Quaternion.Euler(0, 180, 0));// Istantiating the dropped object where the player is standing.
             droppedWeapon.name = inventory[0].name; //Changing the name of the Instantiated object(clone) to be the same name as the object in the inventory.
             droppedWeapon.SetActive(true);//Setting the active to true in order to show the Instantiated object.
@@ -52,7 +56,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void switchWeapons(GameObject item1, GameObject item2) // Function for switching the primary and secondary weapons.
+    public void SwitchSpells(GameObject item1, GameObject item2) // Function for switching the primary and secondary spells.
     {
 
         GameObject item3 = null; // Temporary game object to hold an item in the inventory array.
@@ -60,6 +64,23 @@ public class Inventory : MonoBehaviour
         item3 = inventory[0]; // putting the weapon from the first slot into the temporary game object.
         inventory[0] = item2; // Setting the weapon in the second slot into the first slot.
         inventory[1] = item3; // setting the weapon in the temporary slot into the second slot.
+    }
+
+    private GameObject AssignSpellFromList(GameObject spell)
+    {
+        //The assignment is based on if the name of the spell is the same as the name in the spell list.
+        for(int i = 0; i < spellList.Length; i++)
+        {
+            if (spell.name == spellList[i].name)
+            {
+                return spellList[i];
+            }
+        }
+
+
+
+        return spell;
+
     }
 
 }

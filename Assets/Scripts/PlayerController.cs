@@ -5,15 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public GameObject projectile;
+    //public GameObject projectile;
     public Transform projectileSpawnPoint;
     public Rigidbody2D playerRigidBody2d;
     public bool facingRight;
-    private bool jump;
-    public float jumpForce;
     public bool isGrounded;
-    private Transform groundCheck;
+    public float jumpForce;
     public LayerMask groundLayers;
+    public Inventory playerInventory;
+
+
+    private bool jump;
+    private Transform groundCheck;
 
     float dirX, moveSpeed;
 
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         jump = false;
         jumpForce = jumpForce + 0f;
         playerRigidBody2d = GetComponent<Rigidbody2D>(); //The rigid body that is attached to the player.
+        playerInventory = GetComponent<Inventory>();
 
     }
 
@@ -37,8 +41,6 @@ public class PlayerController : MonoBehaviour
         facingRight = true; //The player will be facing right at the start of the game. Always.
         anim = GetComponent<Animator>();
         moveSpeed = 5f;
-
-
     }
 
     // Update is called once per frame
@@ -51,21 +53,24 @@ public class PlayerController : MonoBehaviour
 
 
         dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
-
         //Moves the player in the x axis.
-        transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
 
-
-
-
+        if (!Input.GetButton("Fire1")){
+            transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
+        }
+        /*
+         Bug in player movement and animation: When holding down horizontal directional movement then pressing mouse 1 then immedietly letting go of movement, the animation gets notacibly stuck for a few frames.
+         Either a bug in the way I have the animation timings set or the code that is used to control the animations.
+         */
 
 
         //If the player is moving and the player is not currently in the middle of the first combo, second combo, or third combo in the chain.
         //When dirX == 0, player is standing still.
-        if ( !standingStill() && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1_Combo1")) //This pice of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
+        if ( !standingStill() && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1_Combo1")) //This piece of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
         { 
             anim.SetBool("isWalking", true);
             Flip(dirX);
+
             //anim.ResetTrigger("attack");
 
             //Debug.Log("This code is running.");
@@ -77,37 +82,36 @@ public class PlayerController : MonoBehaviour
         }
 
 
-
+        if (Input.GetButtonDown("Fire1"))
+            Instantiate(playerInventory.inventory[0], projectileSpawnPoint.position, playerInventory.inventory[0].transform.rotation);
 
 
         //If the player is clicking the left mouse button and it is not in the middle of a kick animation.
-        if(Input.GetButtonDown("Fire1") && (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
+        if (Input.GetButtonDown("Fire1") && (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
         {
             anim.SetTrigger("attack");
             anim.SetBool("isWalking",false);
-            //inCombo = true;
-            //anim.ResetTrigger("attack3");
-            //anim.Play("Combo1_Hit1");
+            dirX = 0;
+
+
         }
         
         else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")){
             anim.SetTrigger("attack");
-            //anim.SetBool("isWalking", false);
-            //anim.ResetTrigger("attack");
-            //anim.Play("Combo1_Hit2");
+            anim.SetBool("isWalking", false);
+            dirX = 0;
 
         }
         
         else if(Input.GetButtonDown("Fire1") &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
             anim.SetTrigger("attack");
-            //anim.SetBool("isWalking", false);
-            //anim.ResetTrigger("attack2");
-            //anim.Play("Combo1_Hit3");
+            dirX = 0;
         }
         else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
             anim.ResetTrigger("attack");
+            dirX = 0;
         }
        
         
@@ -116,6 +120,8 @@ public class PlayerController : MonoBehaviour
         {
             jump = true;
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -140,15 +146,43 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
     void OnTriggerEnter2D(Collider2D collision) //Handles collisions for the player. Handles if the game object is of type projectile then should set the projectile that was picked up.
     {
         //Debug.Log(collision.tag);
-        if(collision.tag == "Wave"){ //Currently our projectile is set to Wave(The type of projectile).
-            projectile = collision.gameObject;
+        if (collision.tag == "Pick_Up")
+        { //Currently our projectile is set to Wave_Pick_Up(The type of projectile
+            Debug.Log("This should happen");
+            playerInventory.AddItem(collision.gameObject);
+
+        }
+        else
+        {
+            Debug.Log(collision.tag);
         }
     }
 
 
+    private void ShootProjectile()
+    {
+        //If the players inventory for spell pick ups is empty we should not be able to spawn projectiles.
+        if(playerInventory.inventory[0] == null)
+        {
+            Debug.Log(playerInventory.inventory.Length);
+            Debug.Log("The projectile should NOT be spawning");
+            //return;
+        }
+        else if(playerInventory.inventory.Length > 0)
+        {
+            Debug.Log(playerInventory.inventory.Length);
+            //Instantiate(playerInventory.inventory[0], projectileSpawnPoint.position, playerInventory.inventory[0].transform.rotation);
+            Debug.Log("The projectile should be spawning");
+        }
+        else
+        {
+            Debug.Log(playerInventory.inventory.Length);
+        }
+    }
 
     bool standingStill()
     {

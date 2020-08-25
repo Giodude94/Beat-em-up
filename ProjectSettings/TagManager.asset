@@ -6,8 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Ground
-  - Wave
   - Projectile
+  - Pick_Up
+  - Wave_Pick_Up
   layers:
   - Default
   - TransparentFX
