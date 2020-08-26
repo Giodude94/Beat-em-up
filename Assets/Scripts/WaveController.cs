@@ -17,6 +17,12 @@ public class WaveController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        if (!playerFacingRight)
+        {
+            Vector3 theScale = transform.localScale; //Creating a ref to the players local scale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
     }
 	
 	// Update is called once per frame

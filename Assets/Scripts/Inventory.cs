@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public const int numSpellSlots = 2;
     public GameObject[] inventory = new GameObject[2]; // Creating an array that holds our items, currently set to two items total.
     public GameObject droppedWeapon;
     public GameObject[] spellList = new GameObject[2]; //List that holds prefabs of all available spells the character can use
+
+    //for UI
+    public Image[] itemImages = new Image[numSpellSlots];
 
     public void AddItem(GameObject spell)
     {
@@ -26,14 +31,19 @@ public class Inventory : MonoBehaviour
             if (inventory[i] == null)
             { // looking in each spot of the inventry until an empty spot is found
 
+                //Gets the sprite and sets it into the inventory of images to be displayed in the UI.
+                itemImages[i].sprite = spell.GetComponent<SpriteRenderer>().sprite;
+                itemImages[i].enabled = true;
+
+
                 inventory[i] = AssignSpellFromList(spell);
                 //Debug.Log (item.name + " was added");
                 // playerText.weaponPickedUp(spell);
-                itemAdded = true;
+                itemAdded = true; 
                 //Make the object de activate to similate object being picked up.
                 spell.SendMessage("DoInteraction");
 
-                break;
+                break; //Can change to return if needed. 
             }
         }
         //If the inventory is full
