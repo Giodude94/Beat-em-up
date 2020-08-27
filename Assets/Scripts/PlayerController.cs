@@ -51,10 +51,10 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapArea(new Vector2((transform.position.x - .85f), transform.position.y - 1.32f),
                        new Vector2(transform.position.x + 0.85f, transform.position.y - 1.7f), groundLayers);
 
-
-        dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
         //Moves the player in the x axis.
+        dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
 
+        //Stops the player from moving whenever they are attacking.
         if (!Input.GetButton("Fire1")){
             transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
         }
@@ -63,6 +63,13 @@ public class PlayerController : MonoBehaviour
          Either a bug in the way I have the animation timings set or the code that is used to control the animations.
          */
 
+
+
+        //Switching spells from one slot to the other
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playerInventory.SwitchSpells();
+        }
 
         //If the player is moving and the player is not currently in the middle of the first combo, second combo, or third combo in the chain.
         //When dirX == 0, player is standing still.
@@ -82,13 +89,12 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Fire1"))
-            Instantiate(playerInventory.inventory[0], projectileSpawnPoint.position, playerInventory.inventory[0].transform.rotation);
-
 
         //If the player is clicking the left mouse button and it is not in the middle of a kick animation.
         if (Input.GetButtonDown("Fire1") && (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
         {
+            Invoke("ShootProjectile", 0);
+            ShootProjectile();
             anim.SetTrigger("attack");
             anim.SetBool("isWalking",false);
             dirX = 0;
@@ -97,6 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         
         else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")){
+            Invoke("ShootProjectile", 0);
             anim.SetTrigger("attack");
             anim.SetBool("isWalking", false);
             dirX = 0;
@@ -105,11 +112,13 @@ public class PlayerController : MonoBehaviour
         
         else if(Input.GetButtonDown("Fire1") &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
+            Invoke("ShootProjectile", 0);
             anim.SetTrigger("attack");
             dirX = 0;
         }
         else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
+            Invoke("ShootProjectile", 0);
             anim.ResetTrigger("attack");
             dirX = 0;
         }
@@ -168,15 +177,11 @@ public class PlayerController : MonoBehaviour
         //If the players inventory for spell pick ups is empty we should not be able to spawn projectiles.
         if(playerInventory.inventory[0] == null)
         {
-            Debug.Log(playerInventory.inventory.Length);
-            Debug.Log("The projectile should NOT be spawning");
-            //return;
+            //The player has not picked up a projectile to shoot yet. So there is nothing to instantiate.
         }
         else if(playerInventory.inventory.Length > 0)
-        {
-            Debug.Log(playerInventory.inventory.Length);
-            //Instantiate(playerInventory.inventory[0], projectileSpawnPoint.position, playerInventory.inventory[0].transform.rotation);
-            Debug.Log("The projectile should be spawning");
+        {   //Slot 0 in the array will be used to tell which spell is currently equiped.
+            Instantiate(playerInventory.inventory[0], projectileSpawnPoint.position, playerInventory.inventory[0].transform.rotation);
         }
         else
         {

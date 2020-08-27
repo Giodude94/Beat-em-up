@@ -20,7 +20,7 @@ public class NOTES : MonoBehaviour
 
    //Could set int the animation to not take any input from the Horizonatal axis as a means of stopping the char when attacking.
    
-        
+   //Character movement needs to be fixed for whenever the player is moving and attacking. The player only stops for a little bit. looks jittery.
   
 
 

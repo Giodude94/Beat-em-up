@@ -66,14 +66,28 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void SwitchSpells(GameObject item1, GameObject item2) // Function for switching the primary and secondary spells.
+    public void SwitchSpells() // Function for switching the primary and secondary spells.
     {
+        //Initializing the first item in our inventory as our first item for the swap.
+        GameObject item1 = inventory[0];
+        //Initializing the second item in our inventory as the second item for the swap.
+        GameObject item2 = inventory[1];
+        // Temporary game object to hold an item in the inventory array.
+        GameObject item3 = null; 
 
-        GameObject item3 = null; // Temporary game object to hold an item in the inventory array.
-
-        item3 = inventory[0]; // putting the weapon from the first slot into the temporary game object.
+        item3 = item1; // putting the weapon from the first slot into the temporary game object.
         inventory[0] = item2; // Setting the weapon in the second slot into the first slot.
         inventory[1] = item3; // setting the weapon in the temporary slot into the second slot.
+
+
+        //We have to update the images that are shown on the UI to respresent the switch in spells.
+        //Updating the first spell in the inventory.
+        itemImages[0].sprite = inventory[0].GetComponent<SpriteRenderer>().sprite;
+        itemImages[0].enabled = true;
+        //Updating the second spell in the inventory.
+        itemImages[1].sprite = inventory[1].GetComponent<SpriteRenderer>().sprite;
+        itemImages[1].enabled = true;
+
     }
 
     private GameObject AssignSpellFromList(GameObject spell)
