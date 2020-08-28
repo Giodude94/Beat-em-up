@@ -10,6 +10,10 @@ public class NOTES : MonoBehaviour
         
     }
 
+   //Added tornado spell. Issue of each spells' positioning needs to be addressed ASAP.
+   //After adding the spell into the inventory create a function that adjusts the spellSpawn location according to the spell that is in the active slot (inventory[0])
+   // that way the spawn location is adjusted(X,Y,Z coordinates) before we spawn that particular spell.
+
    // Find a way to implement a way to pick up a certain pickup and associate that with an object in an inventory that will be on the character.
    // Or see if you can change the scripts of pick ups stored in the inventory so that it can double down as the projectile that will be spawned.
 
