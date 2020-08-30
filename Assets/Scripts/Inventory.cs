@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public const int numSpellSlots = 2;
     public GameObject[] inventory = new GameObject[2]; // Creating an array that holds our items, currently set to two items total.
-    public GameObject droppedWeapon;
+    public GameObject droppedSpell;
     public GameObject[] spellList = new GameObject[2]; //List that holds prefabs of all available spells the character can use
 
     //for UI
@@ -50,15 +50,24 @@ public class Inventory : MonoBehaviour
         if (itemAdded == false && duplicate == false)
         {
             Vector3 itemPos = spell.transform.position;// Storing the current position of the item that is to be picked up.
-            //inventory [1].SetActive (true); un comment this to get the object to re appear at original position when dropped.
-            droppedWeapon = Instantiate(inventory[0], itemPos, Quaternion.Euler(0, 180, 0));// Istantiating the dropped object where the player is standing.
-            droppedWeapon.name = inventory[0].name; //Changing the name of the Instantiated object(clone) to be the same name as the object in the inventory.
-            droppedWeapon.SetActive(true);//Setting the active to true in order to show the Instantiated object.
-            Destroy(inventory[0]);
+                                                       //inventory [1].SetActive (true); un comment this to get the object to re appear at original position when dropped.
 
+            //droppedSpell = Instantiate(inventory[0], itemPos, Quaternion.Euler(0, 180, 0));// Istantiating the dropped object where the player is standing.
+            //droppedSpell.name = inventory[0].name; //Changing the name of the Instantiated object(clone) to be the same name as the object in the inventory. (clone)(clone) -> (clone)
+            //droppedSpell.SetActive(true);//Setting the active to true in order to show the Instantiated object.
+
+            inventory[0] = AssignSpellFromList(spell); //Active slot is the first slot, so we will replace the current spell with the new spell.
+            
+            //Updatindg the UI to represent the new spell that was swapped.
+            itemImages[0].sprite = inventory[0].GetComponent<SpriteRenderer>().sprite;
+            itemImages[0].enabled = true;
+            
+            
             //playerText.weaponPickedUp(item);
-            inventory[0] = spell; // First item in the array of objects
+            //inventory[0] = spell; // First item in the array of objects
+
             spell.SendMessage("DoInteraction");
+            
             //Debug.Log ("Inventory is full - Item was switched out with secondary weapon.");
         }
 
