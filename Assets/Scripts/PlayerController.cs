@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         dirX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
 
         //Stops the player from moving whenever they are attacking.
-        if (!Input.GetButton("Fire1")){
+        if (!Input.GetButton("Fire1")) {
             transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
         }
         /*
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
 
         //Switching spells from one slot to the other
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && (playerInventory.inventory[0] != null && playerInventory.inventory[1] != null)) //If the player presses the key and there are two spells in the inventory.
         {
             playerInventory.SwitchSpells();
         }
