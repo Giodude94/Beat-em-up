@@ -21,12 +21,14 @@ public class PlayerController : MonoBehaviour
     float dirX, moveSpeed;
 
 
-    Animator anim; //Animation that is to be used.
+    private CharacterAnimation playerAnim;
+    //Animator anim; //Animation that is to be used.
     //public GameObject wave;
 
 
     private void Awake()
     {
+        playerAnim = GetComponent<CharacterAnimation>();
         jump = false;
         jumpForce = jumpForce + 0f;
         playerRigidBody2d = GetComponent<Rigidbody2D>(); //The rigid body that is attached to the player.
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         facingRight = true; //The player will be facing right at the start of the game. Always.
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         moveSpeed = 5f;
     }
 
@@ -73,9 +75,10 @@ public class PlayerController : MonoBehaviour
 
         //If the player is moving and the player is not currently in the middle of the first combo, second combo, or third combo in the chain.
         //When dirX == 0, player is standing still.
-        if ( !standingStill() && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1_Combo1")) //This piece of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
+        if ( !standingStill() )//&& !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1_Combo1")) //This piece of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
         { 
-            anim.SetBool("isWalking", true);
+            //anim.SetBool("isWalking", true);
+            playerAnim.Walk(true);
             Flip(dirX);
 
             //anim.ResetTrigger("attack");
@@ -84,42 +87,44 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            anim.SetBool("isWalking", false); // When walking is false idle will be happening.
+            playerAnim.Walk(false);
+            //anim.SetBool("isWalking", false); // When walking is false idle will be happening.
             Flip(dirX); //Will flip while in the middle of the kick animation.
         }
 
 
 
         //If the player is clicking the left mouse button and it is not in the middle of a kick animation.
-        if (Input.GetButtonDown("Fire1") && (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
+        if (Input.GetButtonDown("Fire1"))//&& (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
         {
             Invoke("ShootProjectile", 0);
             ShootProjectile();
-            anim.SetTrigger("attack");
-            anim.SetBool("isWalking",false);
+            //anim.SetTrigger("attack");
+            //anim.SetBool("isWalking",false);
             dirX = 0;
 
 
         }
         
-        else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1")){
+        else if(Input.GetButtonDown("Fire1")) // && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1"))
+        {
             Invoke("ShootProjectile", 0);
-            anim.SetTrigger("attack");
-            anim.SetBool("isWalking", false);
+            //anim.SetTrigger("attack");
+            //anim.SetBool("isWalking", false);
             dirX = 0;
 
         }
         
-        else if(Input.GetButtonDown("Fire1") &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
+        else if(Input.GetButtonDown("Fire1")) // &&  anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
             Invoke("ShootProjectile", 0);
-            anim.SetTrigger("attack");
+            //anim.SetTrigger("attack");
             dirX = 0;
         }
-        else if(Input.GetButtonDown("Fire1") && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
+        else if(Input.GetButtonDown("Fire1")) // && anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
         {
             Invoke("ShootProjectile", 0);
-            anim.ResetTrigger("attack");
+            //anim.ResetTrigger("attack");
             dirX = 0;
         }
        
