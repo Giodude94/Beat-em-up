@@ -78,15 +78,10 @@ public class PlayerController : MonoBehaviour
         { 
             playerAnim.Walk(true);
             Flip(dirX);
-
-            //anim.ResetTrigger("attack");
-
-            //Debug.Log("This code is running.");
         }
         else
         {
             playerAnim.Walk(false);
-
             Flip(dirX); //Will flip while in the middle of the kick animation.
         }
 
@@ -97,7 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             Invoke("ShootProjectile", 0);
             ShootProjectile();
-            playerAnim.Hit_1();
+            //playerAnim.Hit_1();
             playerAnim.Walk(false);
             dirX = 0;
 
