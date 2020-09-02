@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
 
     private void Awake()
     {
