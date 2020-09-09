@@ -10,6 +10,10 @@ public class NOTES : MonoBehaviour
         
     }
 
+    //Fix camera angle and position for 3d space movement.
+    //Seperate sprite from cat gameObject that way we can angle it 45 degrees to make it look good for the camera.
+
+
    //Added tornado spell. Issue of each spells' positioning needs to be addressed ASAP.
    //After adding the spell into the inventory create a function that adjusts the spellSpawn location according to the spell that is in the active slot (inventory[0])
    // that way the spawn location is adjusted(X,Y,Z coordinates) before we spawn that particular spell.

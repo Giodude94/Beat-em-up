@@ -26,7 +26,7 @@ public class CameraScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         cameraOffset.x = 0;
         cameraOffset.y = 2;
-        cameraOffset.z = -5;
+        cameraOffset.z = -4.5f;
     }
 
     // Update is called once per frame

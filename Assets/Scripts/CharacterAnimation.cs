@@ -8,7 +8,7 @@ public class CharacterAnimation : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     public void Walk(bool Walking)

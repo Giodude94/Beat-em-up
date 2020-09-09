@@ -20,11 +20,14 @@ public class PlayerAttack : MonoBehaviour
     private float currentComboTimer;
 
     private ComboState currentComboState;
+    private PlayerController playerController;
 
     void Awake()
     {
         playerAnim = GetComponent<CharacterAnimation>();
         playerAnimator = playerAnim.anim;
+
+        playerController = GetComponent<PlayerController>(); 
     }
 
     private void Start()
@@ -79,8 +82,10 @@ public class PlayerAttack : MonoBehaviour
 
     void ComboAttacks()
     {
+        //Will execute when the player is attacking.
         if (Input.GetButtonDown("Fire1"))
         {
+            //playerController.SendMessage("ShootProjectile");
             currentComboState++;
             activateTimerToReset = true;
             currentComboTimer = defaultComboTimer;
@@ -88,15 +93,22 @@ public class PlayerAttack : MonoBehaviour
             if(currentComboState == ComboState.HIT_1)
             {
                 playerAnim.Hit_1();
+                //playerController.SendMessage("ShootProjectile");
             }
             if (currentComboState == ComboState.HIT_2)
             {
                 playerAnim.Hit_2();
+                //playerController.SendMessage("ShootProjectile");
             }
             if (currentComboState == ComboState.HIT_3)
             {
                 playerAnim.Hit_3();
+                playerController.SendMessage("ShootProjectile");
             }
+        }
+        else //When we are not attacking.
+        {
+
         }
     }
 
