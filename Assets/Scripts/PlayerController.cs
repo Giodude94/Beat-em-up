@@ -90,12 +90,12 @@ public class PlayerController : MonoBehaviour
         if (!StandingStill())//&& !playerAnim.anim.GetCurrentAnimatorStateInfo(0).IsName("Hit1_Combo1")) //This piece of code makes it to where you can hit and move at the same time. without it cutting to the walking animation.
         {
             playerAnim.Walk(true);
-            //Flip(dirX);
+            Flip(dirX);
         }
         else
         {
             playerAnim.Walk(false);
-            //Flip(dirX); //Will flip while in the middle of the attack animations.
+            Flip(dirX); //Will flip while in the middle of the attack animations.
         }
 
 
@@ -133,15 +133,17 @@ public class PlayerController : MonoBehaviour
 
         if (dirX > 0 && !facingRight)
         {
-            facingRight = true; 
+            facingRight = true;
+            //Will flip the sprite and the projectileSpawnPoint(A child of the Player's GameObject). Fixes issue where flipping using a negative scale was throwing warning in Unity.
             playerSprite.flipX = false;
-            projectileSpawnPoint.localPosition = new Vector3(projectileSpawnPoint.localPosition.x * -1, projectileSpawnPoint.localPosition.y, projectileSpawnPoint.localPosition.z);
+            projectileSpawnPoint.transform.localPosition = Vector3.Scale(new Vector3(-1, 1, 1), projectileSpawnPoint.transform.localPosition); //Used to flip the game 
         }
         else if (dirX < 0 && facingRight)
         {
             facingRight = false;
+            //Will flip the sprite and the projectileSpawnPoint(A child of the Player's GameObject). Fixes issue where flipping using a negative scale was throwing warning in Unity.
             playerSprite.flipX = true;
-            projectileSpawnPoint.localPosition = new Vector3(projectileSpawnPoint.localPosition.x * -1, projectileSpawnPoint.localPosition.y, projectileSpawnPoint.localPosition.z);
+            projectileSpawnPoint.transform.localPosition = Vector3.Scale(new Vector3(-1, 1, 1), projectileSpawnPoint.transform.localPosition); //Used to flip the game 
         }
         
     }
