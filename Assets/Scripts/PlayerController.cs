@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    //public GameObject projectile;
     public Transform projectileSpawnPoint;
-    //public Rigidbody2D playerRigidBody2d;
     public Rigidbody playerRigidBody;
     public bool facingRight;
     public bool isGrounded;
@@ -65,7 +63,7 @@ public class PlayerController : MonoBehaviour
         //isGrounded = Physics.OverlapBox(transform.position, transform.localScale / 2, Quaternion.identity, groundLayers);
 
 
-        //Moves the player in the x axis.
+        //Moves the player in the x and y axis.
         dirX = Input.GetAxisRaw("Horizontal") * xSpeed * Time.deltaTime;
         dirY = Input.GetAxisRaw("Vertical") * zSpeed * Time.deltaTime;
 
@@ -135,31 +133,25 @@ public class PlayerController : MonoBehaviour
 
         if (dirX > 0 && !facingRight)
         {
-            facingRight = true;
+            facingRight = true; 
             playerSprite.flipX = false;
+            projectileSpawnPoint.localPosition = new Vector3(projectileSpawnPoint.localPosition.x * -1, projectileSpawnPoint.localPosition.y, projectileSpawnPoint.localPosition.z);
         }
         else if (dirX < 0 && facingRight)
         {
             facingRight = false;
             playerSprite.flipX = true;
+            projectileSpawnPoint.localPosition = new Vector3(projectileSpawnPoint.localPosition.x * -1, projectileSpawnPoint.localPosition.y, projectileSpawnPoint.localPosition.z);
         }
-
-        /*if (dirX > 0 && !facingRight || dirX < 0 && facingRight)//When player is moving to the right.
-        {
-            facingRight = !facingRight;//Flip the values of facing right
-            playerSprite.flipX = true;
-
-        }*/
+        
     }
 
-    void OnTriggerEnter2D(Collider2D collision) //Handles collisions for the player. Handles if the game object is of type projectile then should set the projectile that was picked up.
+    private void OnTriggerEnter(Collider collision)
     {
-        //Debug.Log(collision.tag);
-        if (collision.tag == "Pick_Up")
-        { //Currently our projectile is set to Wave_Pick_Up(The type of projectile
-            Debug.Log("This should happen");
+        if(collision.tag == "Pick_Up")
+        {
             playerInventory.AddItem(collision.gameObject);
-
+            Debug.Log("Colliding with the 3d pick_up object.");
         }
         else
         {

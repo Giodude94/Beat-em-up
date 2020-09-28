@@ -20,7 +20,8 @@ public class WaveController : MonoBehaviour {
         if (!playerFacingRight)
         {
             Vector3 theScale = transform.localScale; //Creating a ref to the players local scale;
-            theScale.x *= -1;
+            //Commented bottom line because Unity gave warning about box colliders not supporting negative scales or size.
+            //theScale.x *= -1;
             transform.localScale = theScale;
         }
     }
@@ -30,11 +31,11 @@ public class WaveController : MonoBehaviour {
         //Controlling which direction the wave will travel based on what direction the player is facing.
         if (playerFacingRight)
         {
-            transform.position = new Vector2(transform.position.x + moveSpeed, transform.position.y);    
+            transform.position = new Vector3(transform.position.x + moveSpeed, transform.position.y, transform.position.z);    
         }
         else if(!playerFacingRight)
         {
-            transform.position = new Vector2(transform.position.x - moveSpeed, transform.position.y);
+            transform.position = new Vector3(transform.position.x  - moveSpeed , transform.position.y, transform.position.z);
         }
         else
         {

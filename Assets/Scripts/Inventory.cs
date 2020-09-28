@@ -32,8 +32,8 @@ public class Inventory : MonoBehaviour
             { // looking in each spot of the inventry until an empty spot is found
 
                 //Gets the sprite and sets it into the inventory of images to be displayed in the UI.
-                itemImages[i].sprite = spell.GetComponent<SpriteRenderer>().sprite;
-                itemImages[i].enabled = true;
+                //itemImages[i].sprite = spell.GetComponent<SpriteRenderer>().sprite;
+                //itemImages[i].enabled = true;
 
 
                 inventory[i] = AssignSpellFromList(spell);
