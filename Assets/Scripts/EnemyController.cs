@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    //NEEDS TO BE UPDATED FOR 3D USE.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.tag); //Will display both the Player and the Enemy tags.

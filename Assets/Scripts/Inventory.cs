@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
             if (inventory[i] == null)
             { // looking in each spot of the inventry until an empty spot is found
 
+                //NOT WORKING CURRENTLY, NEEDS TO BE FIXED.
                 //Gets the sprite and sets it into the inventory of images to be displayed in the UI.
                 //itemImages[i].sprite = spell.GetComponent<SpriteRenderer>().sprite;
                 //itemImages[i].enabled = true;

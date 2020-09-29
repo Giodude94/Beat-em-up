@@ -42,42 +42,6 @@ public class PlayerAttack : MonoBehaviour
         ComboAttacks();
         ResetComboState();
 
-        /*
-        if (Input.GetButtonDown("Fire1") && (playerAnim.anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") || playerAnim.anim.GetCurrentAnimatorStateInfo(0).IsName("Walk")))
-        {
-            Invoke("ShootProjectile", 0);
-            ShootProjectile();
-            //playerAnim.Hit_1();
-            playerAnim.Walk(false);
-            dirX = 0;
-
-
-        }
-
-        else if (Input.GetButtonDown("Fire1") && playerAnim.anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit1"))
-        {
-            Invoke("ShootProjectile", 0);
-            //anim.SetTrigger("attack");
-            //anim.SetBool("isWalking", false);
-            dirX = 0;
-
-        }
-
-        else if (Input.GetButtonDown("Fire1") && playerAnim.anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
-        {
-            Invoke("ShootProjectile", 0);
-            //anim.SetTrigger("attack");
-            dirX = 0;
-        }
-        else if (Input.GetButtonDown("Fire1") && playerAnim.anim.GetCurrentAnimatorStateInfo(0).IsName("Combo1_Hit2"))
-        {
-            Invoke("ShootProjectile", 0);
-            //playerAnim.anim.ResetTrigger("attack");
-            dirX = 0;
-        }
-        */
-
-
     }
 
     void ComboAttacks()
@@ -123,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
                 currentComboState = ComboState.NONE;
 
                 activateTimerToReset = false;
-                currentComboTimer = defaultComboTimer; //Redundant line 85
+                currentComboTimer = defaultComboTimer; //Redundant line 
             }
         }
     }

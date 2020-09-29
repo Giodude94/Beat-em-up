@@ -10,6 +10,8 @@ public class NOTES : MonoBehaviour
         
     }
 
+    //Have to switch the 2D colliders in the left/right arm, and kick hit box to 3d colliders. Using the record frame feature (turn on the collider whenever the arm/leg is extended all the way).
+
     //Fix camera angle and position for 3d space movement.
     //Seperate sprite from cat gameObject that way we can angle it 45 degrees to make it look good for the camera.
 
