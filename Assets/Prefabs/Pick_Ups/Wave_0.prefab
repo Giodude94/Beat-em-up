@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5042900362126969064
+--- !u!1 &1173956127128218925
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5042900362126969057}
-  - component: {fileID: 5042900362126969059}
-  - component: {fileID: 5042900362126969069}
-  - component: {fileID: 5042900362126969070}
-  - component: {fileID: 5042900362126969071}
-  - component: {fileID: 2957344883187195881}
+  - component: {fileID: 4147514842938904560}
+  - component: {fileID: 3442778096733880815}
   m_Layer: 0
-  m_Name: Wave_0
-  m_TagString: Pick_Up
+  m_Name: Sprite
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5042900362126969057
+--- !u!4 &4147514842938904560
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5042900362126969064}
+  m_GameObject: {fileID: 1173956127128218925}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 11.128328, y: 1.8451521, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0.105}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5042900362126969057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!212 &5042900362126969059
+--- !u!212 &3442778096733880815
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5042900362126969064}
+  m_GameObject: {fileID: 1173956127128218925}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -85,6 +81,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5042900362126969064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5042900362126969057}
+  - component: {fileID: 5042900362126969069}
+  - component: {fileID: 5042900362126969070}
+  - component: {fileID: 5042900362126969071}
+  - component: {fileID: 2957344883187195881}
+  m_Layer: 0
+  m_Name: Wave_0
+  m_TagString: Pick_Up
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5042900362126969057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042900362126969064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.128328, y: 1.8451521, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children:
+  - {fileID: 4147514842938904560}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5042900362126969069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,5 +165,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.24, z: 0.045109157}
-  m_Center: {x: 0, y: 0, z: 0.0014102638}
+  m_Size: {x: 0.21358596, y: 0.21248256, z: 0.045109157}
+  m_Center: {x: 0.013207006, y: 0.013758707, z: 0.0014102638}

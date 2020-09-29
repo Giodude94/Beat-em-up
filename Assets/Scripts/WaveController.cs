@@ -50,7 +50,7 @@ public class WaveController : MonoBehaviour {
         {
             Debug.Log("Wave projectile has hit the enemy!");
             collision.gameObject.GetComponent<HealthController>().takeDamage(2);
-            Destroy(gameObject, .05f);
+            Destroy(gameObject, .005f);
         }
 
     }

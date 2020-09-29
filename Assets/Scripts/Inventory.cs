@@ -33,8 +33,8 @@ public class Inventory : MonoBehaviour
 
                 //NOT WORKING CURRENTLY, NEEDS TO BE FIXED.
                 //Gets the sprite and sets it into the inventory of images to be displayed in the UI.
-                //itemImages[i].sprite = spell.GetComponent<SpriteRenderer>().sprite;
-                //itemImages[i].enabled = true;
+                itemImages[i].sprite = spell.GetComponentInChildren<SpriteRenderer>().sprite;
+                itemImages[i].enabled = true;
 
 
                 inventory[i] = AssignSpellFromList(spell);
@@ -60,7 +60,7 @@ public class Inventory : MonoBehaviour
             inventory[0] = AssignSpellFromList(spell); //Active slot is the first slot, so we will replace the current spell with the new spell.
             
             //Updatindg the UI to represent the new spell that was swapped.
-            itemImages[0].sprite = inventory[0].GetComponent<SpriteRenderer>().sprite;
+            itemImages[0].sprite = inventory[0].GetComponentInChildren<SpriteRenderer>().sprite;
             itemImages[0].enabled = true;
             
             
@@ -92,10 +92,10 @@ public class Inventory : MonoBehaviour
 
         //We have to update the images that are shown on the UI to respresent the switch in spells.
         //Updating the first spell in the inventory.
-        itemImages[0].sprite = inventory[0].GetComponent<SpriteRenderer>().sprite;
+        itemImages[0].sprite = inventory[0].GetComponentInChildren<SpriteRenderer>().sprite;
         itemImages[0].enabled = true;
         //Updating the second spell in the inventory.
-        itemImages[1].sprite = inventory[1].GetComponent<SpriteRenderer>().sprite;
+        itemImages[1].sprite = inventory[1].GetComponentInChildren<SpriteRenderer>().sprite;
         itemImages[1].enabled = true;
 
     }
