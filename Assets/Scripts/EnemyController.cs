@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-    public Rigidbody2D enemyRigidBody2d;
+    public Rigidbody enemyRigidBody;
     public float knockback;
     
     
@@ -19,17 +19,12 @@ public class EnemyController : MonoBehaviour {
 		
 	}
 
-    //NEEDS TO BE UPDATED FOR 3D USE.
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(collision.tag); //Will display both the Player and the Enemy tags.
-        if (collision.tag == "Projectile")
+        if (other.tag == "Projectile")
         {
-            //collision.GetComponent<HealthController>().currentHp -= 2;
-            //enemyRigidBody2d.AddForce(new Vector2(200f, 0f));
-            enemyRigidBody2d.velocity = new Vector2(knockback, 0f);
-            
-
+            Debug.Log("Enemy is being hit by projectile/Physical attack.");
+            enemyRigidBody.AddForce( new Vector3(knockback, 0f, 0f));
         }
     }
 }

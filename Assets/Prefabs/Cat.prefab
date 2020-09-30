@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1013547086}
-  - component: {fileID: 1013547087}
+  - component: {fileID: 1335475618}
   m_Layer: 0
   m_Name: LeftPunchHitBox
   m_TagString: Projectile
@@ -31,32 +31,19 @@ Transform:
   m_Father: {fileID: 4675892514795802}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1013547087
-BoxCollider2D:
+--- !u!65 &1335475618
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013547085}
-  m_Enabled: 0
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.75153995, y: -0.29143614}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.9061465, y: 0.35937226}
-  m_EdgeRadius: 0
+  m_Size: {x: 1.2339888, y: 0.27238476, z: 0.7626425}
+  m_Center: {x: 0.87838507, y: 0.28984386, z: 0.31452483}
 --- !u!1 &1047834602
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +83,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1562796646}
-  - component: {fileID: 1562796647}
+  - component: {fileID: 1613588886}
   m_Layer: 0
   m_Name: KickHitBox
   m_TagString: Projectile
@@ -118,22 +105,19 @@ Transform:
   m_Father: {fileID: 4675892514795802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1562796647
-CircleCollider2D:
+--- !u!65 &1613588886
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562796645}
-  m_Enabled: 0
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.97625726, y: -0.061506778}
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.22454828
+  m_Size: {x: 0.8504888, y: 0.42610633, z: 0.7626425}
+  m_Center: {x: 0.8632782, y: 0.34187478, z: 0.31452483}
 --- !u!1 &1963555644
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1963555645}
-  - component: {fileID: 1963555646}
+  - component: {fileID: 705107391}
   m_Layer: 0
   m_Name: RightPunchHitBox
   m_TagString: Projectile
@@ -165,32 +149,19 @@ Transform:
   m_Father: {fileID: 4675892514795802}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1963555646
-BoxCollider2D:
+--- !u!65 &705107391
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963555644}
-  m_Enabled: 0
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.4728732, y: -0.14799869}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.0072193, y: 0.34303093}
-  m_EdgeRadius: 0
+  m_Size: {x: 1.2106504, y: 0.27238476, z: 0.7626425}
+  m_Center: {x: 0.6353482, y: 0.28984386, z: 0.31452483}
 --- !u!1 &1129507097986362
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +178,7 @@ GameObject:
   - component: {fileID: 7754480165410742581}
   - component: {fileID: 8663869036722126202}
   - component: {fileID: 6825210156721369812}
+  - component: {fileID: 1058906397}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Player
@@ -305,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03f7c4b75b67264c977cd7c03c12c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 1058906397}
 --- !u!114 &7754480165410742581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,8 +317,27 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &1058906397
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129507097986362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1004e64984c44d4f9619cdada3338f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7755940711505138343
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,8 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9094379522194270702}
-  - component: {fileID: 8687314377583826239}
-  - component: {fileID: 6119547918429189654}
+  - component: {fileID: 1869179136}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -379,7 +369,7 @@ Transform:
   m_Father: {fileID: 4675892514795802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!212 &8687314377583826239
+--- !u!212 &1869179136
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,22 +419,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6119547918429189654
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7755940711505138343}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d1004e64984c44d4f9619cdada3338f8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
