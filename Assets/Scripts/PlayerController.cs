@@ -171,7 +171,15 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerInventory.inventory.Length > 0)
         {   //Slot 0 in the array will be used to tell which spell is currently equiped.
+            if (!facingRight) // Will flip the image of the sprite if the player is not facing right.
+            {
+                playerInventory.inventory[0].GetComponentInChildren<SpriteRenderer>().flipX = true;
+            }
+            else
+                playerInventory.inventory[0].GetComponentInChildren<SpriteRenderer>().flipX = false;
+
             Instantiate(playerInventory.inventory[0], projectileSpawnPoint.position, playerInventory.inventory[0].transform.rotation);
+            
         }
         else
         {
